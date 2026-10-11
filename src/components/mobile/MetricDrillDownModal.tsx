@@ -101,90 +101,90 @@ export const MetricDrillDownModal: React.FC<MetricDrillDownModalProps> = ({
 
   return (
     <div 
-      className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/80 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-xs animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div 
-        className="w-full max-w-lg bg-[#131A12] border border-white/[0.12] rounded-t-[32px] sm:rounded-[32px] p-5 sm:p-6 shadow-[0_0_50px_rgba(0,0,0,0.9)] relative max-h-[92vh] overflow-y-auto text-white transition-all animate-in slide-in-from-bottom-8 duration-200"
+        className="w-full max-w-lg bg-white border border-[#DCF0DF] rounded-t-[32px] sm:rounded-[32px] p-5 sm:p-6 shadow-2xl relative max-h-[92vh] overflow-y-auto text-[#132216] transition-all animate-in slide-in-from-bottom-8 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Grab Handle for Mobile */}
-        <div className="w-12 h-1 bg-white/20 rounded-full mx-auto mb-3 sm:hidden" />
+        <div className="w-12 h-1 bg-zinc-300 rounded-full mx-auto mb-3 sm:hidden" />
 
-        {/* Top Floating Close Button - Circular Stark White */}
+        {/* Top Floating Close Button */}
         <button
           onClick={onClose}
           aria-label="Close drill-down modal"
-          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white text-[#131A12] flex items-center justify-center font-black hover:bg-zinc-200 active:scale-95 transition-all shadow-lg cursor-pointer z-10"
+          className="absolute top-5 right-5 w-8 h-8 rounded-full bg-[#F5FAF6] text-zinc-600 flex items-center justify-center font-black hover:bg-[#EBF7EE] hover:text-[#16A34A] active:scale-95 transition-all shadow-xs cursor-pointer z-10"
         >
           <X className="w-4 h-4 stroke-[2.8]" />
         </button>
 
         {/* Player ID Context Strip */}
-        <div className="flex items-center gap-2 mb-3 pr-10">
-          <div className="w-7 h-7 rounded-full bg-white text-[#131A12] font-mono font-black text-xs flex items-center justify-center shadow">
+        <div className="flex items-center gap-3 mb-4 pr-10">
+          <div className="w-8 h-8 rounded-2xl bg-[#EBF7EE] text-[#16A34A] font-black text-xs flex items-center justify-center border border-[#DCF0DF]">
             #{player.number}
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <span className="text-xs font-black text-white">{player.name}</span>
-              <span className="text-[10px] font-mono font-bold px-1.5 py-0.2 rounded bg-white/[0.08] text-[#CCFF00]">
+              <span className="text-xs font-black text-[#132216]">{player.name}</span>
+              <span className="text-[10px] font-bold px-2 py-0.2 rounded-full bg-[#EBF7EE] text-[#16A34A] border border-[#DCF0DF]">
                 {player.position}
               </span>
             </div>
-            <p className="text-[10px] font-mono text-zinc-400">
+            <p className="text-[10px] font-medium text-zinc-400">
               Live Matchday 24 · Minute 76'
             </p>
           </div>
         </div>
 
         {/* Metric Switcher Tab Pill Row */}
-        <div className="flex items-center gap-1.5 p-1 bg-[#1F291E] border border-white/[0.08] rounded-2xl mb-4 overflow-x-auto scrollbar-none">
+        <div className="flex items-center gap-1.5 p-1 bg-[#F5FAF6] border border-[#DEEEDE] rounded-2xl mb-4 overflow-x-auto scrollbar-none">
           <button
             onClick={() => onSwitchMetric?.('heartRate')}
-            className={`flex-1 py-1.5 px-2.5 rounded-xl text-[11px] font-mono font-bold transition-all flex items-center justify-center gap-1.5 shrink-0 cursor-pointer ${
+            className={`flex-1 py-1.5 px-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 shrink-0 cursor-pointer ${
               metricType === 'heartRate'
-                ? 'bg-[#CCFF00] text-[#131A12] shadow-[0_0_12px_rgba(204,255,0,0.35)]'
-                : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
+                ? 'bg-[#16A34A] text-white shadow-xs'
+                : 'text-zinc-600 hover:text-zinc-900'
             }`}
           >
-            <Heart className="w-3 h-3 shrink-0" />
+            <Heart className="w-3.5 h-3.5 shrink-0" />
             <span>Heart Rate</span>
           </button>
 
           <button
             onClick={() => onSwitchMetric?.('sprints')}
-            className={`flex-1 py-1.5 px-2.5 rounded-xl text-[11px] font-mono font-bold transition-all flex items-center justify-center gap-1.5 shrink-0 cursor-pointer ${
+            className={`flex-1 py-1.5 px-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 shrink-0 cursor-pointer ${
               metricType === 'sprints'
-                ? 'bg-[#CCFF00] text-[#131A12] shadow-[0_0_12px_rgba(204,255,0,0.35)]'
-                : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
+                ? 'bg-[#16A34A] text-white shadow-xs'
+                : 'text-zinc-600 hover:text-zinc-900'
             }`}
           >
-            <Zap className="w-3 h-3 shrink-0" />
+            <Zap className="w-3.5 h-3.5 shrink-0" />
             <span>Sprints</span>
           </button>
 
           <button
             onClick={() => onSwitchMetric?.('distance')}
-            className={`flex-1 py-1.5 px-2.5 rounded-xl text-[11px] font-mono font-bold transition-all flex items-center justify-center gap-1.5 shrink-0 cursor-pointer ${
+            className={`flex-1 py-1.5 px-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 shrink-0 cursor-pointer ${
               metricType === 'distance'
-                ? 'bg-[#CCFF00] text-[#131A12] shadow-[0_0_12px_rgba(204,255,0,0.35)]'
-                : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
+                ? 'bg-[#16A34A] text-white shadow-xs'
+                : 'text-zinc-600 hover:text-zinc-900'
             }`}
           >
-            <Activity className="w-3 h-3 shrink-0" />
+            <Activity className="w-3.5 h-3.5 shrink-0" />
             <span>Distance</span>
           </button>
 
           <button
             onClick={() => onSwitchMetric?.('recovery')}
-            className={`flex-1 py-1.5 px-2.5 rounded-xl text-[11px] font-mono font-bold transition-all flex items-center justify-center gap-1.5 shrink-0 cursor-pointer ${
+            className={`flex-1 py-1.5 px-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 shrink-0 cursor-pointer ${
               metricType === 'recovery'
-                ? 'bg-[#CCFF00] text-[#131A12] shadow-[0_0_12px_rgba(204,255,0,0.35)]'
-                : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
+                ? 'bg-[#16A34A] text-white shadow-xs'
+                : 'text-zinc-600 hover:text-zinc-900'
             }`}
           >
-            <Sparkles className="w-3 h-3 shrink-0" />
+            <Sparkles className="w-3.5 h-3.5 shrink-0" />
             <span>Recovery</span>
           </button>
         </div>

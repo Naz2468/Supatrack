@@ -48,9 +48,23 @@ export interface SquadMemberHealth {
   distanceCoveredKm: number;
   sprintAvgKmh: number;
   batteryPct: number;
+  pitchX?: number; // 0-100% horizontal coordinate on pitch
+  pitchY?: number; // 0-100% vertical coordinate on pitch
   supaRating: SupaRatingBreakdown;
   imu: ImuBiomechanics;
   subAlert?: string;
+}
+
+export interface TacticalClip {
+  id: string;
+  title: string;
+  minute: string;
+  sender: string;
+  role: string;
+  duration: string;
+  summary: string;
+  tags: string[];
+  reviewed: boolean;
 }
 
 export interface CoachNote {
@@ -108,6 +122,8 @@ export const SQUAD_MEMBERS: SquadMemberHealth[] = [
     distanceCoveredKm: 9.84,
     sprintAvgKmh: 4.8,
     batteryPct: 88,
+    pitchX: 80,
+    pitchY: 82,
     supaRating: {
       overallScore: 88,
       roleTitle: 'Winger Protocol',
@@ -146,6 +162,8 @@ export const SQUAD_MEMBERS: SquadMemberHealth[] = [
     distanceCoveredKm: 10.12,
     sprintAvgKmh: 4.4,
     batteryPct: 92,
+    pitchX: 84,
+    pitchY: 50,
     supaRating: {
       overallScore: 91,
       roleTitle: 'Target Man Press & Box Acceleration',
@@ -182,6 +200,8 @@ export const SQUAD_MEMBERS: SquadMemberHealth[] = [
     distanceCoveredKm: 11.45,
     sprintAvgKmh: 4.3,
     batteryPct: 85,
+    pitchX: 62,
+    pitchY: 68,
     supaRating: {
       overallScore: 86,
       roleTitle: 'Advanced Playmaker Line-Breaking',
@@ -219,6 +239,8 @@ export const SQUAD_MEMBERS: SquadMemberHealth[] = [
     distanceCoveredKm: 11.62,
     sprintAvgKmh: 4.2,
     batteryPct: 90,
+    pitchX: 45,
+    pitchY: 50,
     supaRating: {
       overallScore: 93,
       roleTitle: 'CDM Recovery Speed & Workload Consistency',
@@ -255,6 +277,8 @@ export const SQUAD_MEMBERS: SquadMemberHealth[] = [
     distanceCoveredKm: 12.18,
     sprintAvgKmh: 4.1,
     batteryPct: 94,
+    pitchX: 58,
+    pitchY: 32,
     supaRating: {
       overallScore: 90,
       roleTitle: 'Central Engine & Spatial Coverage',
@@ -291,6 +315,8 @@ export const SQUAD_MEMBERS: SquadMemberHealth[] = [
     distanceCoveredKm: 10.89,
     sprintAvgKmh: 4.5,
     batteryPct: 86,
+    pitchX: 28,
+    pitchY: 16,
     supaRating: {
       overallScore: 84,
       roleTitle: 'Flank Overlap & High-Sprint Recovery',
@@ -345,6 +371,197 @@ export const SQUAD_MEMBERS: SquadMemberHealth[] = [
       groundContactTimeMs: 182,
       impactGForce: 3.1,
     },
+    pitchX: 24,
+    pitchY: 38,
+  },
+  {
+    id: 'p1',
+    number: 1,
+    name: 'David Costa',
+    position: 'Goalkeeper',
+    positionGroup: 'GK',
+    academyOrigin: 'Benfica Seixal',
+    heartRate: 122,
+    maxHeartRate: 170,
+    recoveryScore: 98,
+    strainScore: 8.5,
+    fatigueStatus: 'Optimal',
+    sprintCount: 4,
+    topSpeedKmh: 24.2,
+    distanceCoveredKm: 4.85,
+    sprintAvgKmh: 3.1,
+    batteryPct: 96,
+    pitchX: 9,
+    pitchY: 50,
+    supaRating: {
+      overallScore: 89,
+      roleTitle: 'Sweeper Keeper Distribution',
+      primaryTrait1: { name: 'Box Control', score: 92 },
+      primaryTrait2: { name: 'Long Distribution', score: 88 },
+      primaryTrait3: { name: 'Reaction Speed', score: 94 },
+      tacticalEfficiency: 91.0,
+    },
+    imu: {
+      sensorModel: 'MPU6050 6-Axis IMU (200Hz)',
+      baselineFootedness: 'Right Bias (50/50)',
+      currentLeftPct: 50.0,
+      currentRightPct: 50.0,
+      deviationPct: 0.0,
+      status: 'Nominal',
+      groundContactTimeMs: 175,
+      impactGForce: 2.1,
+    },
+  },
+  {
+    id: 'p5',
+    number: 5,
+    name: 'Gabriel Silva',
+    position: 'Center Back',
+    positionGroup: 'DF',
+    academyOrigin: 'Santos Academy',
+    heartRate: 142,
+    maxHeartRate: 184,
+    recoveryScore: 91,
+    strainScore: 13.0,
+    fatigueStatus: 'Optimal',
+    sprintCount: 14,
+    topSpeedKmh: 32.1,
+    distanceCoveredKm: 9.40,
+    sprintAvgKmh: 3.9,
+    batteryPct: 93,
+    pitchX: 24,
+    pitchY: 62,
+    supaRating: {
+      overallScore: 88,
+      roleTitle: 'Covering Defender & Diagonal Outlet',
+      primaryTrait1: { name: 'Interception Pace', score: 90 },
+      primaryTrait2: { name: 'Physical Duel', score: 92 },
+      primaryTrait3: { name: 'Progression Pass', score: 84 },
+      tacticalEfficiency: 89.4,
+    },
+    imu: {
+      sensorModel: 'MPU6050 6-Axis IMU (200Hz)',
+      baselineFootedness: 'Right Bias (51/49)',
+      currentLeftPct: 50.6,
+      currentRightPct: 49.4,
+      deviationPct: 1.2,
+      status: 'Nominal',
+      groundContactTimeMs: 189,
+      impactGForce: 3.3,
+    },
+  },
+  {
+    id: 'p2',
+    number: 2,
+    name: 'Marcus Walker',
+    position: 'Right Back',
+    positionGroup: 'DF',
+    academyOrigin: 'Man City Academy',
+    heartRate: 162,
+    maxHeartRate: 191,
+    recoveryScore: 82,
+    strainScore: 16.4,
+    fatigueStatus: 'Optimal',
+    sprintCount: 23,
+    topSpeedKmh: 34.1,
+    distanceCoveredKm: 10.72,
+    sprintAvgKmh: 4.4,
+    batteryPct: 89,
+    pitchX: 30,
+    pitchY: 84,
+    supaRating: {
+      overallScore: 87,
+      roleTitle: 'Recovery Fullback Flank Lockdown',
+      primaryTrait1: { name: 'Sprint Recovery', score: 93 },
+      primaryTrait2: { name: '1v1 Containment', score: 88 },
+      primaryTrait3: { name: 'Support Overlap', score: 82 },
+      tacticalEfficiency: 86.9,
+    },
+    imu: {
+      sensorModel: 'MPU6050 6-Axis IMU (200Hz)',
+      baselineFootedness: 'Right Bias (52/48)',
+      currentLeftPct: 51.4,
+      currentRightPct: 48.6,
+      deviationPct: 2.8,
+      status: 'Nominal',
+      groundContactTimeMs: 196,
+      impactGForce: 3.4,
+    },
+  },
+  {
+    id: 'p11',
+    number: 11,
+    name: 'Leo Rossi',
+    position: 'Left Wing',
+    positionGroup: 'FW',
+    academyOrigin: 'Atalanta Zingonia',
+    heartRate: 174,
+    maxHeartRate: 195,
+    recoveryScore: 71,
+    strainScore: 17.8,
+    fatigueStatus: 'Caution',
+    sprintCount: 28,
+    topSpeedKmh: 34.2,
+    distanceCoveredKm: 10.15,
+    sprintAvgKmh: 4.7,
+    batteryPct: 84,
+    pitchX: 76,
+    pitchY: 18,
+    supaRating: {
+      overallScore: 89,
+      roleTitle: 'Direct Winger Cut-Inside Velocity',
+      primaryTrait1: { name: 'Take-On Burst', score: 92 },
+      primaryTrait2: { name: 'Dribble Velocity', score: 91 },
+      primaryTrait3: { name: 'Final Ball', score: 85 },
+      tacticalEfficiency: 88.0,
+    },
+    imu: {
+      sensorModel: 'MPU6050 6-Axis IMU (200Hz)',
+      baselineFootedness: 'Right Bias (51/49)',
+      currentLeftPct: 53.0,
+      currentRightPct: 47.0,
+      deviationPct: 4.0,
+      status: 'Nominal',
+      groundContactTimeMs: 202,
+      impactGForce: 3.6,
+    },
+    subAlert: 'High sprint volume (28). Elevated cardiac strain.',
+  },
+];
+
+export const TACTICAL_CLIPS: TacticalClip[] = [
+  {
+    id: 'clip-1',
+    title: '68\' Flank Deceleration Decay',
+    minute: "68'",
+    sender: 'Dr. Vance (Sports Science)',
+    role: 'Biomechanics Lead',
+    duration: '0:24',
+    summary: 'Sprint velocity dropped from 34.8 km/h to 22.4 km/h with 12% left limb loading bias. Sub advised to avoid acute hamstring strain.',
+    tags: ['Velocity Decay', '+12% Stride Bias', 'High Risk'],
+    reviewed: false,
+  },
+  {
+    id: 'clip-2',
+    title: '42\' High Press Recovery Run',
+    minute: "42'",
+    sender: 'Coach Bell (Tactical Lead)',
+    role: 'Head Coach',
+    duration: '0:35',
+    summary: 'Elite recovery angle cutting off the half-space passing lane. Sustained 31.2 km/h across 48 meters.',
+    tags: ['Counter-Press', 'Work Rate', 'Optimal'],
+    reviewed: true,
+  },
+  {
+    id: 'clip-3',
+    title: '19\' Final Third Penetration & Shot',
+    minute: "19'",
+    sender: 'Coach Bell (Tactical Lead)',
+    role: 'Head Coach',
+    duration: '0:18',
+    summary: 'Match-peak sprint burst recorded at 34.8 km/h (#1 across both squads). Excellent separation.',
+    tags: ['Peak Sprint #1', 'Box Penetration', 'Benchmark'],
+    reviewed: true,
   },
 ];
 

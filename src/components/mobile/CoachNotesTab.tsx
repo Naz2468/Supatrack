@@ -1,3 +1,8 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 import React, { useState } from 'react';
 import { CoachNote, COACH_NOTES } from '../../data/mobileMockData';
 import { Send, User, Clock } from 'lucide-react';
@@ -25,7 +30,7 @@ export const CoachNotesTab: React.FC = () => {
   };
 
   return (
-    <div className="w-full px-4 space-y-3 pb-24">
+    <div className="w-full px-5 space-y-3 pb-24">
       {/* Minimal Message Input */}
       <form onSubmit={handleSend} className="relative">
         <input
@@ -33,53 +38,54 @@ export const CoachNotesTab: React.FC = () => {
           placeholder="Send staff advisory note..."
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
-          className="w-full pl-3.5 pr-10 py-2.5 text-xs bg-[#1F291E] border border-white/[0.08] rounded-xl text-white placeholder-zinc-500 focus:outline-none focus:border-[#CCFF00] transition-colors"
+          className="w-full pl-4 pr-11 py-3 text-xs bg-[#F5FAF6] border border-[#DEEEDE] rounded-2xl text-[#132216] placeholder-zinc-400 focus:outline-none focus:border-[#16A34A] focus:bg-white transition-all shadow-xs"
         />
         <button
           type="submit"
           disabled={!inputText.trim()}
-          className="absolute right-1.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-lg bg-[#CCFF00] disabled:opacity-30 text-[#131A12] font-black flex items-center justify-center transition-all cursor-pointer"
+          className="absolute right-1.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-xl bg-[#16A34A] disabled:opacity-30 text-white font-bold flex items-center justify-center transition-all cursor-pointer shadow-xs"
         >
-          <Send className="w-3.5 h-3.5 stroke-[2.4]" />
+          <Send className="w-4 h-4 stroke-[2.2]" />
         </button>
       </form>
 
       {/* Sleek Notes Feed */}
-      <div className="space-y-2">
+      <div className="space-y-2.5">
         {notes.map((note) => {
           const isUrgent = note.priority === 'urgent';
 
           return (
             <div
               key={note.id}
-              className={`p-3 rounded-2xl border transition-all shadow-sm ${
+              className={`p-4 rounded-3xl border transition-all shadow-xs ${
                 isUrgent
-                  ? 'bg-[#241F1A] border-amber-500/40'
-                  : 'bg-[#1F291E] border-white/[0.08]'
+                  ? 'bg-amber-50/60 border-amber-200'
+                  : 'bg-white border-[#DCF0DF]'
               }`}
             >
-              <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-white/[0.06] text-xs">
+              <div className="flex items-center justify-between mb-1.5">
                 <div className="flex items-center gap-2">
-                  <div className={`w-6 h-6 rounded-lg flex items-center justify-center text-xs font-black ${
-                    isUrgent ? 'bg-amber-400 text-[#131A12]' : 'bg-white text-[#131A12]'
+                  <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold ${
+                    isUrgent ? 'bg-amber-200 text-amber-900' : 'bg-[#EBF7EE] text-[#16A34A]'
                   }`}>
-                    <User className="w-3.5 h-3.5" />
+                    {note.author.slice(0, 1)}
                   </div>
-                  <span className="font-bold text-white text-xs">{note.author}</span>
-                  <span className="text-[10px] text-zinc-400 font-mono">({note.role})</span>
+                  <span className="text-xs font-black text-[#132216]">
+                    {note.author}
+                  </span>
+                  <span className={`text-[10px] font-bold px-2 py-0.2 rounded-full ${
+                    isUrgent ? 'bg-amber-100 text-amber-800' : 'bg-[#EBF7EE] text-[#16A34A]'
+                  }`}>
+                    {note.role}
+                  </span>
                 </div>
 
-                <div className="flex items-center gap-1.5 text-[10px] font-mono text-zinc-400">
-                  {isUrgent && (
-                    <span className="px-1.5 py-0.2 rounded bg-amber-400/20 text-amber-300 font-bold">
-                      FLAG
-                    </span>
-                  )}
-                  <span>{note.time}</span>
-                </div>
+                <span className="text-[10px] text-zinc-400 font-medium">
+                  {note.time}
+                </span>
               </div>
 
-              <p className="text-xs text-zinc-200 font-sans leading-relaxed">
+              <p className="text-xs text-zinc-700 pl-8 leading-relaxed">
                 {note.message}
               </p>
             </div>
