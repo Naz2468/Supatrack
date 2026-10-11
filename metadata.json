@@ -1,0 +1,6 @@
+{
+  "name": "Supremos FC Telemetry Engine",
+  "description": "Elite sports science platform tracking real-time player telemetry, workload, sprint decay, and fatigue alerts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
